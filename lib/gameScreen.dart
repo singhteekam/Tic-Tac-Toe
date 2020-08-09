@@ -3,8 +3,8 @@ import 'package:tic_tac/button.dart';
 import 'package:tic_tac/customButton.dart';
 
 class GameScreen extends StatefulWidget {
-  final player1,player2;
-  GameScreen({this.player1,this.player2});
+  final player1,player2,player1Color,player2Color;
+  GameScreen({this.player1,this.player2,this.player1Color,this.player2Color});
   @override
   _GameScreenState createState() => _GameScreenState();
 }
@@ -14,11 +14,34 @@ class _GameScreenState extends State<GameScreen> {
   List<Btn> buttons;
   var active;
   List p1=[],p2=[];
+  Color p1Color,p2Color;
 
   @override
   void initState() {
     super.initState();
+    getColor();
     buttons=getButtons();
+  }
+
+  getColor(){
+    switch (widget.player1Color) {
+      case "Red": p1Color=Colors.red;   break;
+      case "Black": p1Color=Colors.black;   break;
+      case "Pink": p1Color=Colors.pink;   break;
+      case "Green": p1Color=Colors.green;   break;
+      case "Blue": p1Color=Colors.blue;   break;
+      default:
+    }
+    switch (widget.player2Color) {
+      case "Red": p2Color=Colors.red;   break;
+      case "Black": p2Color=Colors.black;   break;
+      case "Pink": p2Color=Colors.pink;   break;
+      case "Green": p2Color=Colors.green;   break;
+      case "Blue": p2Color=Colors.blue;   break;
+      default:
+    }
+
+    setState(() {});
   }
 
  List<Btn> getButtons(){
@@ -36,13 +59,13 @@ class _GameScreenState extends State<GameScreen> {
     setState(() {
       if(active==1){
       active=2;
-      button.bgColor=Colors.red;
+      button.bgColor=p1Color;
       button.text="0";
       p1.add(button.id);
     }
     else {
       active=1;
-      button.bgColor=Colors.green;
+      button.bgColor=p2Color;
       button.text="X";
       p2.add(button.id);
     }
@@ -115,7 +138,12 @@ class _GameScreenState extends State<GameScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:Text("Tic Tac Toe")
+        leading: Image.asset("assets/ttt.png",),
+        title:Text("Tic Tac Toe"),
+        centerTitle: true,
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.home), onPressed: ()=>Navigator.pop(context))
+        ],
       ),
       backgroundColor: Colors.lightBlue[100],
       body: Padding(
@@ -159,7 +187,7 @@ class _GameScreenState extends State<GameScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(color: Colors.black,child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Player 1: "+widget.player1,textScaleFactor: 2,style: TextStyle(
+                    child: Text("(0) "+"Player 1: "+widget.player1,textScaleFactor: 2,style: TextStyle(
                       color:Colors.white,fontWeight:FontWeight.bold,fontStyle: FontStyle.italic
                     ),),
                   )),
@@ -168,7 +196,7 @@ class _GameScreenState extends State<GameScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(color: Colors.black,child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Player 2: "+widget.player2,textScaleFactor: 2,style: TextStyle(
+                    child: Text("(X) "+"Player 2: "+widget.player2,textScaleFactor: 2,style: TextStyle(
                       color:Colors.white,fontWeight:FontWeight.bold,fontStyle: FontStyle.italic
                     ),),
                   )),
