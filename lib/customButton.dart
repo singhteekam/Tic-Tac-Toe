@@ -4,14 +4,14 @@ class CustomButton extends StatelessWidget {
 
   final text;
   final VoidCallback callback;
-  CustomButton({this.text,this.callback});
+  CustomButton({this.text,required this.callback});
 
   @override
   Widget build(BuildContext context) {
     return Material(
         color: Colors.teal,
         elevation: 6.0,
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(10.0),
         child: MaterialButton(
           onPressed: callback,
           minWidth: 100.0,

@@ -1,4 +1,4 @@
-# tic_tac
+# zero_cross
 
 A new Flutter project.
 

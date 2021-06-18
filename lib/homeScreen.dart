@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tic_tac/customButton.dart';
-import 'package:tic_tac/gameScreen.dart';
+import 'package:zero_cross/settings.dart';
+import 'package:zero_cross/customButton.dart';
+import 'package:zero_cross/gameScreen.dart';
+// import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -13,19 +15,18 @@ class _HomeScreenState extends State<HomeScreen> {
   List<DropdownMenuItem<String>> items = [];
   List<String> chooseColors = ["Red", "Black", "Pink", "Green", "Blue"];
 
+
   @override
-  initState(){
+  initState() {
     super.initState();
     getColorOpt();
   }
-  
+
   getColorOpt() {
     for (int i = 0; i < chooseColors.length; i++) {
       items.add(
         new DropdownMenuItem(
-          child: new Text(chooseColors[i]),
-          value: chooseColors[i]
-        ),
+            child: new Text(chooseColors[i]), value: chooseColors[i]),
       );
     }
     setState(() {});
@@ -44,12 +45,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ));
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue[100],
+      // backgroundColor: Colors.lightBlue[100],
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
@@ -60,18 +59,32 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                   padding: EdgeInsets.only(
                       top: MediaQuery.of(context).size.height * 0.15)),
-              Image.asset(
-                "assets/ttt.png",
-                width: 200,
-                height: 200,
+
+              Center(
+                child: Container(
+                  // margin: EdgeInsets.all(20),
+                  width: 200,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    // border: Border.all(color: Color(0xFF00EAD9), width: 3),
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image: AssetImage("assets/ttt.png"), fit: BoxFit.fill),
+                  ),
+                ),
               ),
+
               Center(
                   child: Text(
-                "Tic Tac Toe",
-                textScaleFactor: 3,
+                "Zero Cross",
+                textScaleFactor: 2.5,
                 style: TextStyle(
-                    fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                  fontWeight: FontWeight.bold,
+                ),
               )),
+
+              SizedBox(height: 20),
+
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
@@ -95,59 +108,74 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(child: Text("Choose Color",textScaleFactor: 1.2,style: TextStyle(
-                  fontWeight:FontWeight.bold,fontStyle:FontStyle.italic
-                ),)),
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                child: Center(
+                    child: Text(
+                  "Choose Color",
+                  textScaleFactor: 1.2,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
               ),
               Padding(
-                padding: const EdgeInsets.only(left:15.0,bottom: 15,right: 15),
+                padding:
+                    const EdgeInsets.only(left: 15.0, bottom: 15, right: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Text("Player 1:",textScaleFactor: 1.2,style: TextStyle(
-                  fontWeight:FontWeight.bold,fontStyle:FontStyle.italic
-                )),
+                    Text("Player 1:",
+                        textScaleFactor: 1.2,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        )),
                     Container(
                         child: DropdownButton(
                       value: player1Color,
                       items: items,
-                      onChanged: (String value) {
+                      onChanged: (String? value) {
                         setState(() {
-                          player1Color = value;
+                          player1Color = value!;
                         });
                       },
                     )),
-                    Text("Player 2:",textScaleFactor: 1.2,style: TextStyle(
-                  fontWeight:FontWeight.bold,fontStyle:FontStyle.italic
-                )),
+                    Text("Player 2:",
+                        textScaleFactor: 1.2,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        )),
                     Container(
                         child: DropdownButton(
                       value: player2Color,
-                      items:items,
-                      onChanged: (String value) {
+                      items: items,
+                      onChanged: (String? value) {
                         setState(() {
-                          player2Color = value;
+                          player2Color = value!;
                         });
                       },
                     )),
                   ],
                 ),
               ),
-              CustomButton(text: "Play", callback: navigate)
+
+             
+
+              CustomButton(text: "Play", callback: navigate),
+
+              SizedBox(height: 20),
+
+              InkWell(
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Settings())),
+                child: Container(
+                    height: 40,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [Icon(Icons.settings), Text(" Settings")])),
+              )
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.black,
-        child: Text(
-          "Built by @TS❤️",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
-        ),
-        // color:Colors.grey
       ),
     );
   }
