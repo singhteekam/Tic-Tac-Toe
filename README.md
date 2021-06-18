@@ -1,16 +1,15 @@
-# zero_cross
+# Tic Tac Toe (Zero Cross)
 
-A new Flutter project.
+## Description
+    The Zero Cross game is a free and classic puzzle game also known as Noughts and Crosses (0 and X). It is played on a 3x3 grid. It is a two-player game, the player
+    who can mark the row in horizontal, vertical, or diagonal manner wins the game.
+    This game is designed digitally just to get rid of pen and paper to save the trees. Enjoy the game!
+    
+### Features
+    - Ad-free
+    - You can play this game offline.
+    - It is available in dark mode to protect your eyes.
+    - You can adjust the color theme of both players.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Amazon Appstore link](https://www.amazon.com/Teekam-Singh-Zero-Cross/dp/B097BG5QXV/ref=sr_1_2?dchild=1&keywords=zero+cross&qid=1624046630&rnid=2941120011&s=mobile-apps&sr=1-2)
+- [Web link](http://zerocrossgame.singhteekam.in)
